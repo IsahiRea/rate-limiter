@@ -1,25 +1,12 @@
 package main
 
 import (
-	"sync"
 	"time"
+
+	"github.com/IsahiRea/rate-limiter/concurrency"
 )
 
-type RateLimiter struct {
-	requests    map[string]int
-	maxRequests int
-	window      time.Duration
-	mu          sync.Mutex
-}
-
-func NewRateLimiter(maxRequests int, window time.Duration) *RateLimiter {
-	return &RateLimiter{
-		requests:    make(map[string]int),
-		maxRequests: maxRequests,
-		window:      window,
-	}
-}
-
 func main() {
-
+	rl := concurrency.NewRateLimiter(10, 1*time.Second)
+	_ = rl
 }
